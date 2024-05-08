@@ -1,0 +1,31 @@
+tabel Pasien(
+id(pk), nama, email, userName, password,
+foto, nomorWa, umur, gender)
+
+tabel Admin(
+id(pk), nama, email, userName, role, password,
+foto)
+
+tabel Reservasi(
+id(pk), idPasien(ref key), idDokter, jenisPembayaran,
+statusPembayaran)
+
+tabel Dokter(
+id(pk), nama, umur, spesialis, rating,
+gender, foto, review)
+
+tabel Jadwal(
+id(pk), idDokter(rk), hari, tanggal, jam, status)
+
+tabel Layanan(
+id(pk), idDokter(rk), nama, biaya, deskripsi, gambar)
+
+#relasi
+user -- reservasi, one to many, fk(idUser)
+dokter -- reservasi, one to many, fk(idDokter)
+jadwal -- reservasi, one to one, fk(idJadwal)
+-------------------------
+dokter -- jadwal, one to many,fk(idDokter)
+dokter -- layanan, many to many, fk(dokter_layanan)
+
+layanan -- reservasi, many to many
